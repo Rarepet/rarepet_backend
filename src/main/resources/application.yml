@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:mysql://dev-febnine.c3bkd5wqzspw.ap-northeast-2.rds.amazonaws.com:3306/Febnine
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: febnine
+    password: 1f9s*aW#01
+  jpa:
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true #To beautify or pretty print the SQL
+        show_sql: true #show sql
+
+
+logging.level:
+  org.hibernate.type: trace
