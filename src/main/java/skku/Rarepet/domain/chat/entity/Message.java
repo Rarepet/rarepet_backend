@@ -5,29 +5,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "chat")
-public class Chat {
+@Table(name = "mesaage")
+public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "c_id")
+    @Column(name = "m_id")
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String uuid;
+    @Column(nullable = false)
+    private String content;
 
     @Column(nullable = false)
     private Long user;
 
     @Column(nullable = false)
-    private Long expert;
-
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "chat")
-    private Collection<Message> messages;
+    private Long chat;
 }
