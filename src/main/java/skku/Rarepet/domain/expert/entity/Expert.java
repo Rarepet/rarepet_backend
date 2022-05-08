@@ -24,11 +24,11 @@ public class Expert {
     @Column(nullable = false)
     private String phone;
 
-    @Enumerated()
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private StatusType status;
 
-    @Enumerated()
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false, name = "animal_type")
     private AnimalType animalType;
 
