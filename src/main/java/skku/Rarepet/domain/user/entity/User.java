@@ -2,9 +2,12 @@ package skku.Rarepet.domain.user.entity;
 
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import skku.Rarepet.domain.chat.entity.Chat;
+import skku.Rarepet.domain.chat.entity.Message;
 import skku.Rarepet.domain.expert.entity.Expert;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Getter
@@ -37,6 +40,11 @@ public class User {
     @ColumnDefault("0")
     private int points;
 
-//    @OneToOne(mappedBy = "user")
-//    private Expert expert;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name= "user")
+    private Collection<Chat> chat;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user")
+    private Collection<Message> messages;
 }
