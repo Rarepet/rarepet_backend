@@ -2,11 +2,13 @@ package skku.Rarepet.domain.expert.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import skku.Rarepet.domain.chat.entity.Chat;
 import skku.Rarepet.domain.expert.enums.StatusType;
 import skku.Rarepet.domain.user.entity.User;
 import skku.Rarepet.global.enums.AnimalType;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Getter
@@ -38,4 +40,8 @@ public class Expert {
     @OneToOne
     @JoinColumn(name = "u_id", referencedColumnName = "u_id", nullable = false)
     private User user;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "expert")
+    private Collection<Chat> chat;
 }
