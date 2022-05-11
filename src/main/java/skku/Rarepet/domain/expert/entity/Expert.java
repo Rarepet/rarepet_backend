@@ -22,7 +22,7 @@ public class Expert {
     @Column(name="e_id")
     private Long id;
 
-    @Column()
+    @Column(nullable = false)
     private String name;
 
     @Column()
