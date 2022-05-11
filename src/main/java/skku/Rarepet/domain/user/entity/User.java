@@ -2,9 +2,8 @@ package skku.Rarepet.domain.user.entity;
 
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
-import skku.Rarepet.domain.chat.entity.Chat;
+import skku.Rarepet.domain.chat.entity.ChatRoom;
 import skku.Rarepet.domain.chat.entity.Message;
-import skku.Rarepet.domain.expert.entity.Expert;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -28,9 +27,6 @@ public class User {
     private String password;
 
     @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
     private String nickname;
 
     @Column(nullable = false, unique = true)
@@ -42,7 +38,7 @@ public class User {
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name= "user")
-    private Collection<Chat> chat;
+    private Collection<ChatRoom> chatRoom;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user")

@@ -16,9 +16,6 @@ public class UserRegisterDto {
     private String password;
 
     @NotNull
-    private String name;
-
-    @NotNull
     private String nickname;
 
     @NotNull
