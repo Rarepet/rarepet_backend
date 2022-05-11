@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "mesaage")
+@Table(name = "message")
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +21,9 @@ public class Message {
 
     @Column(nullable = false)
     private String content;
+
+    @Column(nullable = false)
+    private boolean isRead;
 
     @Column(nullable = false)
     private Long user;
