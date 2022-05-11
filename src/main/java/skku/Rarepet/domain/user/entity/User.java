@@ -36,7 +36,7 @@ public class User {
     @ColumnDefault("0")
     private int points;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name= "user")
     private Collection<ChatRoom> chatRoom;
 

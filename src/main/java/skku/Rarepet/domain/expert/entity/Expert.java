@@ -42,7 +42,7 @@ public class Expert {
     @Column(nullable = false)
     private String certificate;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "u_id", referencedColumnName = "u_id", nullable = false, unique = true)
     private User user;
 
