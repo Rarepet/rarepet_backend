@@ -1,10 +1,11 @@
 package skku.Rarepet.domain.user.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import skku.Rarepet.domain.user.dto.UserLoginDto;
 import skku.Rarepet.domain.user.dto.UserRegisterDto;
-import skku.Rarepet.domain.user.dto.UserResponse;
 import skku.Rarepet.domain.user.dto.UserResponseDto;
 import skku.Rarepet.domain.user.entity.User;
 import skku.Rarepet.domain.user.repository.UserRepository;
@@ -17,28 +18,29 @@ import java.util.Optional;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder getPasswordEncoder;
 
-    /**
-     * 이거 회원가입?
-     */
-    public String createUser(UserRegisterDto userRegisterDto) {
-        validateDuplicateUser(userRegisterDto);
-        User user = User.builder()
-                .username(userRegisterDto.getUsername())
-                .password(userRegisterDto.getPassword())
-                .name(userRegisterDto.getName())
-                .nickname(userRegisterDto.getNickname())
-                .email(userRegisterDto.getEmail())
-                .build();
-        userRepository.save(user);
-        return "hello";
+    public UserResponseDto createUser(UserRegisterDto userRegisterDto) {
+        try {
+            User user = User.builder()
+                    .username(userRegisterDto.getUsername())
+                    .password(getPasswordEncoder.encode(userRegisterDto.getPassword()))
+                    .nickname(userRegisterDto.getNickname())
+                    .email(userRegisterDto.getEmail())
+                    .build();
+            UserResponseDto userResponseDto = UserResponseDto.builder().id(userRepository.save(user).getId()).build();
+            return userResponseDto;
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("Error: " + e.getMessage());
+            throw e;
+        }
     }
 
     public UserResponseDto loginUser(UserLoginDto userLoginDto) {
-        User user = userRepository.findByUsername(userLoginDto.getUsername(), userLoginDto.getPassword());
-        UserResponseDto userResponseDto = UserResponseDto.builder().id(user.getId()).build();
-//        UserResponse userResponse = userRepository.findByUsername(userLoginDto.getUsername(), userLoginDto.getPassword());
-//        UserResponseDto userResponseDto = UserResponseDto.builder().id(userResponse.getId()).build();
+        Optional<User> user = userRepository.findByUsername(userLoginDto.getUsername());
+        boolean isLoginInfoTrue = getPasswordEncoder.matches(userLoginDto.getPassword(), user.get().getPassword());
+        UserResponseDto userResponseDto = UserResponseDto.builder().id(user.get().getId()).build();
         return userResponseDto;
     }
 
@@ -47,8 +49,7 @@ public class UserService {
      */
     public void validateDuplicateUser(UserRegisterDto userRegisterDto){
         String userName = userRegisterDto.getUsername();
-        String password = userRegisterDto.getPassword();
-        Optional<User> findUsers = userRepository.findByUsername(userName,password);
+        Optional<User> findUsers = userRepository.findByUsername(userName);
 
         if (findUsers.isPresent()){
             throw new IllegalStateException("이미 존재하는 회원입니다.");

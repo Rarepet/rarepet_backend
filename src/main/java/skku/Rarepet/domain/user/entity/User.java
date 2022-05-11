@@ -2,9 +2,9 @@ package skku.Rarepet.domain.user.entity;
 
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
-import skku.Rarepet.domain.chat.entity.Chat;
+import skku.Rarepet.domain.chat.entity.ChatRoom;
 import skku.Rarepet.domain.chat.entity.Message;
-import skku.Rarepet.domain.expert.entity.Expert;
+import skku.Rarepet.global.base.BaseTimeEntity;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -15,7 +15,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "user")
-public class User {
+public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "u_id")
@@ -28,9 +28,6 @@ public class User {
     private String password;
 
     @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false)
     private String nickname;
 
     @Column(nullable = false, unique = true)
@@ -40,9 +37,9 @@ public class User {
     @ColumnDefault("0")
     private int points;
 
-    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name= "user")
-    private Collection<Chat> chat;
+    private Collection<ChatRoom> chatRoom;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user")

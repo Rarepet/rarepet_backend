@@ -18,7 +18,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new Argon2PasswordEncoder();
     }
 
-    @Bean PasswordEncoder getPasswordEncoder() {
+    @Bean public PasswordEncoder getPasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

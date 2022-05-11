@@ -1,17 +1,20 @@
 package skku.Rarepet.domain.chat.entity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import skku.Rarepet.global.base.BaseTimeEntity;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "message")
-public class Message {
+public class Message extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "m_id")
@@ -19,6 +22,9 @@ public class Message {
 
     @Column(nullable = false)
     private String content;
+
+    @Column(nullable = false)
+    private boolean isRead;
 
     @Column(nullable = false)
     private Long user;
