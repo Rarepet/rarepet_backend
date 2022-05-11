@@ -4,6 +4,7 @@ import lombok.*;
 import skku.Rarepet.domain.chat.entity.ChatRoom;
 import skku.Rarepet.domain.expert.enums.StatusType;
 import skku.Rarepet.domain.user.entity.User;
+import skku.Rarepet.global.base.BaseTimeEntity;
 import skku.Rarepet.global.enums.AnimalType;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ import java.util.Collection;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "expert")
-public class Expert {
+public class Expert extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="e_id")

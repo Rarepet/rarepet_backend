@@ -43,7 +43,7 @@ public class UserController {
     }
 
     @GetMapping("/test")
-    public String test() {
-        return "test";
+    public void test() {
+        System.out.println("test");
     }
 }

@@ -4,6 +4,7 @@ import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
 import skku.Rarepet.domain.chat.entity.ChatRoom;
 import skku.Rarepet.domain.chat.entity.Message;
+import skku.Rarepet.global.base.BaseTimeEntity;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -14,7 +15,7 @@ import java.util.Collection;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "user")
-public class User {
+public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "u_id")
