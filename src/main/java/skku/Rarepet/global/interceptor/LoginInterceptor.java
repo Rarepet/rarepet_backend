@@ -1,7 +1,7 @@
 package skku.Rarepet.global.interceptor;
 
 import org.springframework.web.servlet.HandlerInterceptor;
-import skku.Rarepet.domain.user.interfaces.SessionConst;
+import skku.Rarepet.global.interfaces.SessionConst;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

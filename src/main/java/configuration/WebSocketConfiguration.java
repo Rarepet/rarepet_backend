@@ -2,10 +2,10 @@ package skku.Rarepet.configuration;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
+import skku.Rarepet.global.interceptor.HttpHandshakeInterceptor;
 import skku.Rarepet.handler.SocketHandler;
 
 import java.io.IOException;

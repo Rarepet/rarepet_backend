@@ -43,4 +43,10 @@ public class User {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user")
     private Collection<Message> messages;
+
+    public User(Long u_id, String username, String password) {
+        this.id = u_id;
+        this.username = username;
+        this.password = password;
+    }
 }
