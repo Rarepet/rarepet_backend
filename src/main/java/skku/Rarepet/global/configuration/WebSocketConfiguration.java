@@ -1,4 +1,4 @@
-package configuration;
+package skku.Rarepet.global.configuration;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;

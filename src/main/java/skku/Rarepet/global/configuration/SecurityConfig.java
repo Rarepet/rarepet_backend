@@ -1,4 +1,4 @@
-package configuration;
+package skku.Rarepet.global.configuration;
 
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -13,7 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean(name = "passwordEncoder")
+    @Bean(name = "PasswordEncoder")
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
