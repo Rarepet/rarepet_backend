@@ -20,6 +20,7 @@ public class UserService {
 
     public UserResponseDto createUser(UserRegisterDto userRegisterDto) {
         try {
+            validateDuplicateUser(userRegisterDto);
             User user = User.builder()
                     .username(userRegisterDto.getUsername())
                     .password(passwordEncoder.encode(userRegisterDto.getPassword()))
