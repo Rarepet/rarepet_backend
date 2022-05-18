@@ -20,12 +20,9 @@ import java.util.Objects;
 @Getter
 public class ConsultingRoom {
 
-    @Id @GeneratedValue
-    @Column(name = "con_id")
     private Long id;
 
     private final Map<Long, WebSocketSession> clients = new HashMap<>();
-
 
     @Override
     public int hashCode(){
