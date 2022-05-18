@@ -1,0 +1,18 @@
+package skku.Rarepet.domain.consulting.controller;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import skku.Rarepet.domain.consulting.service.ReviewService;
+
+@RequiredArgsConstructor
+@RestController
+@RequestMapping("/review")
+public class ReviewController {
+
+    private final ReviewService reviewService;
+
+
+}

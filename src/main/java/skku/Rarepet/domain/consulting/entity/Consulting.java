@@ -1,5 +1,7 @@
 package skku.Rarepet.domain.consulting.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import skku.Rarepet.domain.expert.entity.Expert;
@@ -11,6 +13,8 @@ import javax.persistence.*;
 @Entity
 @Getter
 @NoArgsConstructor
+@Builder
+@AllArgsConstructor
 @Table(name = "consulting")
 public class Consulting extends BaseTimeEntity {
 
