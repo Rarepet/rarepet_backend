@@ -1,12 +1,19 @@
 package skku.Rarepet.global.interceptor;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.http.server.ServletServerHttpRequest;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.socket.WebSocketHandler;
 import org.springframework.web.socket.server.HandshakeInterceptor;
+import org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor;
+import org.springframework.web.util.WebUtils;
 import skku.Rarepet.global.interfaces.SessionConst;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
@@ -15,13 +22,15 @@ public class HttpHandshakeInterceptor implements HandshakeInterceptor {
     public boolean beforeHandshake(
             ServerHttpRequest request, ServerHttpResponse response, WebSocketHandler wsHandler, Map<String, Object> attributes
     ) throws Exception {
-        System.out.println("hello");
-        ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
-        HttpSession session = servletRequest.getServletRequest().getSession();
-        if(session == null || session.getAttribute(SessionConst.SESSION) == null) {
-            return false;
+        if (request instanceof ServletServerHttpRequest) {
+            ServletServerHttpRequest servletRequest = (ServletServerHttpRequest) request;
+            HttpSession session = servletRequest.getServletRequest().getSession(false);
+            if(session == null || session.getAttribute(SessionConst.SESSION) == null) {
+                return false;
+            }
+            attributes.put(SessionConst.SESSION, session.getAttribute(SessionConst.SESSION));
+            return true;
         }
-        attributes.put("sessionId", session.getAttribute(SessionConst.SESSION));
         return true;
     }
 
