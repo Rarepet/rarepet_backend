@@ -39,7 +39,7 @@ public class UserController {
         UserResponseDto userResponseDto = userService.loginUser(userLoginDto);
         HttpSession session = request.getSession();
         session.setAttribute(SessionConst.SESSION, userResponseDto.getId());
-        return userService.loginUser(userLoginDto);
+        return userResponseDto;
     }
 
     @GetMapping("/test")
