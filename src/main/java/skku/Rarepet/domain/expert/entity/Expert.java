@@ -1,6 +1,7 @@
 package skku.Rarepet.domain.expert.entity;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import skku.Rarepet.domain.chat.entity.ChatRoom;
 import skku.Rarepet.domain.expert.enums.StatusType;
 import skku.Rarepet.domain.user.entity.User;
@@ -31,6 +32,9 @@ public class Expert extends BaseTimeEntity {
 
     @Column(nullable = false)
     private String phone;
+
+    @ColumnDefault("0")
+    private int points;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
