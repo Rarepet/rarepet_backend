@@ -2,6 +2,7 @@ package skku.Rarepet.domain.user.entity;
 
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import skku.Rarepet.domain.board.entity.Board;
 import skku.Rarepet.domain.chat.entity.ChatRoom;
 import skku.Rarepet.domain.chat.entity.Message;
 import skku.Rarepet.global.base.BaseTimeEntity;
@@ -44,6 +45,10 @@ public class User extends BaseTimeEntity {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user")
     private Collection<Message> messages;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user")
+    private Collection<Board> boards;
 
     public User(Long u_id, String username, String password) {
         this.id = u_id;
