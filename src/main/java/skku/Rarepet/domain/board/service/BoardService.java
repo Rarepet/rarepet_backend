@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import skku.Rarepet.domain.board.dto.BoardListDto;
 import skku.Rarepet.domain.board.dto.BoardResponseDto;
-import skku.Rarepet.domain.board.dto.CreateBoardDto;
+import skku.Rarepet.domain.board.dto.CreateBoardRequestDto;
+import skku.Rarepet.domain.board.dto.CreateBoardResponseDto;
 import skku.Rarepet.domain.board.entity.Board;
 import skku.Rarepet.domain.board.repository.BoardRepository;
 import skku.Rarepet.domain.user.entity.User;
@@ -21,15 +22,15 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    public Long createBoard(CreateBoardDto createBoardDto, Long id) {
+    public CreateBoardResponseDto createBoard(CreateBoardRequestDto createBoardRequestDto, Long id) {
         try {
             User user = new User(id);
             Board board = Board.builder()
-                    .content(createBoardDto.getContent())
-                    .title(createBoardDto.getTitle())
+                    .content(createBoardRequestDto.getContent())
+                    .title(createBoardRequestDto.getTitle())
                     .user(user)
                     .build();
-            return boardRepository.save(board).getId();
+            return new CreateBoardResponseDto(boardRepository.save(board).getId());
         } catch(Exception e) {
             e.printStackTrace();
             throw e;
@@ -38,9 +39,6 @@ public class BoardService {
 
     public List<BoardListDto> findAll() {
         List<Board> boardList = boardRepository.findAllBoardList();
-        if(boardList.isEmpty()) {
-            throw new CustomException(ErrorCode.NOT_FOUND);
-        }
         List<BoardListDto> boardListDto = boardList.stream()
                 .map(board -> new BoardListDto(board.getId(), board.getTitle(), board.getUser().getNickname()))
                 .collect(Collectors.toList());

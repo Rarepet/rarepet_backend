@@ -5,7 +5,7 @@ import lombok.Getter;
 import javax.validation.constraints.NotNull;
 
 @Getter
-public class CreateBoardDto {
+public class CreateBoardRequestDto {
 
     @NotNull
     private String title;
