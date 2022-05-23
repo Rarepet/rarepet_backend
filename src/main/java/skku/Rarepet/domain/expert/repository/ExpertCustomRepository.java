@@ -7,6 +7,7 @@ import skku.Rarepet.domain.expert.entity.Expert;
 import skku.Rarepet.global.enums.AnimalType;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ExpertCustomRepository {
@@ -16,4 +17,7 @@ public interface ExpertCustomRepository {
             nativeQuery = true
     )
     List<Expert> findAllExpertByAnimalType(@Param("animalType")String animalType);
+
+    @Query(value = "select e from Expert e join e.user where e.user.id = :id")
+    Optional<Expert> findExpertByUserId(@Param("id") Long id);
 }

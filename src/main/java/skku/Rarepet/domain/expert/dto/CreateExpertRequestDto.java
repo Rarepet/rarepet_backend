@@ -1,15 +1,12 @@
 package skku.Rarepet.domain.expert.dto;
 
 import lombok.Getter;
-import skku.Rarepet.domain.expert.enums.StatusType;
 import skku.Rarepet.global.enums.AnimalType;
 
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Positive;
 
 @Getter
-public class CreateExpertDto {
+public class CreateExpertRequestDto {
 
     @NotNull
     private String intro;

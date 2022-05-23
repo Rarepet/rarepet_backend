@@ -1,9 +1,9 @@
 package skku.Rarepet.domain.expert.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import skku.Rarepet.domain.expert.dto.CreateExpertDto;
+import skku.Rarepet.domain.expert.dto.CreateExpertRequestDto;
+import skku.Rarepet.domain.expert.dto.CreateExpertResponseDto;
 import skku.Rarepet.domain.expert.dto.ExpertResponseDto;
 import skku.Rarepet.domain.expert.service.ExpertService;
 import skku.Rarepet.global.enums.AnimalType;
@@ -20,15 +20,15 @@ public class ExpertController {
     private final ExpertService expertService;
 
     @PostMapping()
-    public Long createExpert(
-            @Valid @RequestBody CreateExpertDto createExpertDto,
-            @SessionAttribute(name = SessionConst.SESSION, required = true) Long id
+    public CreateExpertResponseDto createExpert(
+            @Valid @RequestBody CreateExpertRequestDto createExpertRequestDto,
+            @SessionAttribute(name = SessionConst.SESSION) Long id
     ) {
-        return expertService.createExpert(createExpertDto, id);
+        return expertService.createExpert(createExpertRequestDto, id);
     }
 
     @PostMapping("/{id}")
-    public Long acceptExpert(@PathVariable Long id) throws Exception {
+    public CreateExpertResponseDto acceptExpert(@PathVariable Long id) throws Exception {
         return expertService.acceptExpert(id);
     }
 
