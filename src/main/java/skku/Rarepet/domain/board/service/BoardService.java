@@ -40,7 +40,7 @@ public class BoardService {
     public List<BoardListDto> findAll() {
         List<Board> boardList = boardRepository.findAllBoardList();
         List<BoardListDto> boardListDto = boardList.stream()
-                .map(board -> new BoardListDto(board.getId(), board.getTitle(), board.getUser().getNickname()))
+                .map(board -> new BoardListDto(board.getId(), board.getTitle(), board.getUser().getNickname(), board.getCreateDate()))
                 .collect(Collectors.toList());
         return boardListDto;
     }
