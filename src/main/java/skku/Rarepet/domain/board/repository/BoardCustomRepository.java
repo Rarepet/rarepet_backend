@@ -1,6 +1,7 @@
 package skku.Rarepet.domain.board.repository;
 
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import skku.Rarepet.domain.board.entity.Board;
 
@@ -10,9 +11,9 @@ import java.util.Optional;
 @Repository
 public interface BoardCustomRepository {
 
-    @Query(
-            value = "select board.b_id, board.title, user.nickname from board join user on board.user = user.u_id",
-            nativeQuery = true
-    )
-    List<Object> findAllBoardList();
+    @Query(value = "SELECT b FROM Board b join fetch b.user")
+    List<Board> findAllBoardList();
+
+    @Query(value = "SELECT b FROM Board b join fetch b.user where b.id = :id")
+    Optional<Board> findBoard(@Param("id") Long id);
 }

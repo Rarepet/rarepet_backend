@@ -8,6 +8,7 @@ import skku.Rarepet.domain.user.entity.User;
 import skku.Rarepet.global.base.BaseTimeEntity;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -28,7 +29,14 @@ public class Board extends BaseTimeEntity {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "u_id", nullable = false)
     private User user;
+
+    public Board(Long id, String title, User user, LocalDateTime createdAt) {
+        this.id = id;
+        this.title = title;
+        this.user = user;
+        this.setCreateDate(createdAt);
+    }
 }
