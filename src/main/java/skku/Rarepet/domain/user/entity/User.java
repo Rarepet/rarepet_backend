@@ -38,18 +38,6 @@ public class User extends BaseTimeEntity {
     @ColumnDefault("0")
     private int points;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name= "user")
-    private Collection<ChatRoom> chatRoom;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user")
-    private Collection<Message> messages;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user")
-    private Collection<Board> boards;
-
     public User(Long u_id, String username, String password) {
         this.id = u_id;
         this.username = username;

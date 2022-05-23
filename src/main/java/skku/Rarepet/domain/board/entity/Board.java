@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import skku.Rarepet.domain.user.entity.User;
 import skku.Rarepet.global.base.BaseTimeEntity;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class Board extends BaseTimeEntity {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @Column(nullable = false)
-    private Long user;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "u_id", nullable = false)
+    private User user;
 }
