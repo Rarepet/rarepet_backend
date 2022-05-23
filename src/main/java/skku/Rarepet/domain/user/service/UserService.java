@@ -54,13 +54,13 @@ public class UserService {
     }
 
     /**
-     * 중복 회원 검사
+     * 중복 회원 검사(username & email 둘다 검사)
      */
     public void validateDuplicateUser(UserRegisterDto userRegisterDto){
         String userName = userRegisterDto.getUsername();
-        Optional<User> findUsers = userRepository.findByUsername(userName);
-
-        if (findUsers.isPresent()){
+        String email = userRegisterDto.getEmail();
+        Optional<User[]> findUsers = userRepository.findByUsernameOrEmail(userName, email);
+        if (findUsers.get().length != 0){
             throw new CustomException(ErrorCode.USER_ALREADY_EXIST);
         }
     }

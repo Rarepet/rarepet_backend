@@ -43,4 +43,8 @@ public class User extends BaseTimeEntity {
         this.username = username;
         this.password = password;
     }
+
+    public User(Long u_id) {
+        this.id = u_id;
+    }
 }
