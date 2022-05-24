@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import skku.Rarepet.domain.expert.dto.CreateExpertRequestDto;
 import skku.Rarepet.domain.expert.dto.CreateExpertResponseDto;
+import skku.Rarepet.domain.expert.dto.ExpertListResponseDto;
 import skku.Rarepet.domain.expert.dto.ExpertResponseDto;
 import skku.Rarepet.domain.expert.entity.Expert;
 import skku.Rarepet.domain.expert.enums.StatusType;
@@ -56,13 +57,13 @@ public class ExpertService {
         }
     }
 
-    public List<ExpertResponseDto> findAllExpert(AnimalType animalType) {
+    public List<ExpertListResponseDto> findAllExpert(AnimalType animalType) {
         List<Expert> expertList = expertRepository.findAllExpertByAnimalType(animalType.toString());
-        List<ExpertResponseDto> expertResponseDto = expertList.stream()
-                .map(expert -> new ExpertResponseDto(expert))
+        List<ExpertListResponseDto> expertListResponseDto = expertList.stream()
+                .map(expert -> new ExpertListResponseDto(expert))
                 .collect(Collectors.toList());
 
-        return expertResponseDto;
+        return expertListResponseDto;
     }
 
     public void validateDuplicateExpert(Long id) {
@@ -70,6 +71,28 @@ public class ExpertService {
 
         if(expert.isPresent()) {
             throw new CustomException(ErrorCode.USER_ALREADY_EXIST);
+        }
+    }
+
+    public Optional<ExpertResponseDto> findExpert(Long id) {
+        try {
+            Optional<Expert> expert = expertRepository.findById(id);
+            if(expert.isEmpty() || expert.get().getStatus() != StatusType.ACCEPT) {
+                throw new CustomException(ErrorCode.NOT_FOUND);
+            }
+            Optional<ExpertResponseDto> expertResponseDto = Optional.of(
+                    new ExpertResponseDto(
+                            expert.get().getId(),
+                            expert.get().getName(),
+                            expert.get().getAnimalType(),
+                            expert.get().getIntro(),
+                            expert.get().getCertificate(),
+                            expert.get().getPoints()
+                    )
+            );
+            return expertResponseDto;
+        } catch(Exception e) {
+            throw new CustomException(ErrorCode.NOT_FOUND);
         }
     }
 }

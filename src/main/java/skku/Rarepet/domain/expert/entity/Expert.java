@@ -50,4 +50,9 @@ public class Expert extends BaseTimeEntity {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "u_id", referencedColumnName = "u_id", nullable = false, unique = true)
     private User user;
+
+    public Expert(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

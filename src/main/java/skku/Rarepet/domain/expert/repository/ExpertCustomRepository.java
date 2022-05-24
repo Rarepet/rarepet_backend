@@ -12,10 +12,7 @@ import java.util.Optional;
 @Repository
 public interface ExpertCustomRepository {
 
-    @Query(
-            value = "select * from expert  where animal_type = :animalType and status = 'ACCEPT'",
-            nativeQuery = true
-    )
+    @Query(value = "select new Expert(e.id, e.name) from Expert e where e.animalType = :animalType and e.status = 'ACCEPT'")
     List<Expert> findAllExpertByAnimalType(@Param("animalType")String animalType);
 
     @Query(value = "select e from Expert e join e.user where e.user.id = :id")
