@@ -58,7 +58,7 @@ public class ExpertService {
     }
 
     public List<ExpertListResponseDto> findAllExpert(AnimalType animalType) {
-        List<Expert> expertList = expertRepository.findAllExpertByAnimalType(animalType.toString());
+        List<Expert> expertList = expertRepository.findAllExpertByAnimalType(animalType);
         List<ExpertListResponseDto> expertListResponseDto = expertList.stream()
                 .map(expert -> new ExpertListResponseDto(expert))
                 .collect(Collectors.toList());

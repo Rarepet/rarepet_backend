@@ -12,8 +12,8 @@ import java.util.Optional;
 @Repository
 public interface ExpertCustomRepository {
 
-    @Query(value = "select new Expert(e.id, e.name) from Expert e where e.animalType = :animalType and e.status = 'ACCEPT'")
-    List<Expert> findAllExpertByAnimalType(@Param("animalType")String animalType);
+    @Query(value = "select new Expert(e.id, e.name, e.animalType) from Expert e where e.animalType = :animalType and e.status = 'ACCEPT'")
+    List<Expert> findAllExpertByAnimalType(@Param("animalType")AnimalType animalType);
 
     @Query(value = "select e from Expert e join e.user where e.user.id = :id")
     Optional<Expert> findExpertByUserId(@Param("id") Long id);

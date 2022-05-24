@@ -51,8 +51,9 @@ public class Expert extends BaseTimeEntity {
     @JoinColumn(name = "u_id", referencedColumnName = "u_id", nullable = false, unique = true)
     private User user;
 
-    public Expert(Long id, String name) {
+    public Expert(Long id, String name, AnimalType animalType) {
         this.id = id;
         this.name = name;
+        this.animalType = animalType;
     }
 }
