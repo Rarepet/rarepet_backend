@@ -1,4 +1,4 @@
-package skku.Rarepet.domain.consulting.service;
+package skku.Rarepet.domain.consulting;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

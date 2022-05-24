@@ -17,7 +17,6 @@ public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-
     public UserResponseDto createUser(UserRegisterDto userRegisterDto) {
         try {
             validateDuplicateUser(userRegisterDto);

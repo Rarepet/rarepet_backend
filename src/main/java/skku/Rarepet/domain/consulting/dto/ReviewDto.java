@@ -11,6 +11,4 @@ public class ReviewDto {
 
     @NotNull
     private int grade;
-
-
 }

@@ -1,9 +1,9 @@
 package skku.Rarepet.domain.consulting.service;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.socket.WebSocketSession;
+import skku.Rarepet.domain.consulting.Parser;
 import skku.Rarepet.domain.consulting.entity.ConsultingRoom;
 
 
