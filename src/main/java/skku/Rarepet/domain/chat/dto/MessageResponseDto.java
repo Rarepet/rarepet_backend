@@ -21,6 +21,5 @@ public class MessageResponseDto {
     public MessageResponseDto(Message message) {
         this.m_id = message.getId();
         this.content = message.getContent();
-        this.user = message.getUser();
     }
 }

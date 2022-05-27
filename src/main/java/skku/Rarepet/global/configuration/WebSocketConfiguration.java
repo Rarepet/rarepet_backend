@@ -15,7 +15,7 @@ import java.io.IOException;
  * Building the Signaling Server
  */
 @Configuration
-@EnableWebSocket
+@EnableWebSocket    // 웹소켓 설정
 @RequiredArgsConstructor
 public class WebSocketConfiguration implements WebSocketConfigurer {
 
@@ -25,7 +25,7 @@ public class WebSocketConfiguration implements WebSocketConfigurer {
      */
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
-        registry.addHandler(socketHandler, "/socket")
+        registry.addHandler(socketHandler, "/ws/webrtc")
                     .setAllowedOrigins("*");
     }
 }

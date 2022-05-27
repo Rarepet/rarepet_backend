@@ -24,6 +24,7 @@ public class ConsultingService {
     private final UserRepository userRepository;
     private final ExpertRepository expertRepository;
 
+
     public void payPoints(ConsultingDto consultingDto){
         int points = consultingDto.getPoints();
         Optional<User> user = userRepository.findByUsername(consultingDto.getUsername());

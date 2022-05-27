@@ -23,7 +23,7 @@ public class ReviewController {
     }
 
     // 리뷰 수정
-    @PostMapping()
+    @GetMapping()
     public Long modifyReview(@Valid @RequestBody ReviewDto reviewDto){
         return reviewService.modifyReview(reviewDto);
     }

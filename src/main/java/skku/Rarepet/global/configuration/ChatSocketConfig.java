@@ -24,5 +24,6 @@ public class ChatSocketConfig implements WebSocketConfigurer {
                 .addInterceptors(new HttpHandshakeInterceptor())
                 .setAllowedOrigins("*");
     }
+
 }
 

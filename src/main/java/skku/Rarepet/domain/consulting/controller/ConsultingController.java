@@ -34,8 +34,10 @@ public class ConsultingController {
 //        return experts;
 //    }
 
-    @PostMapping()
-    public void enterConsultingRoom(@SessionAttribute(name = SessionConst.SESSION, required = false) Long id, WebSocketServerSockJsSession session) {
+    @PostMapping("/room/{sid}/user/{uuid}")
+    public void enterConsultingRoom(@SessionAttribute(name = SessionConst.SESSION, required = false) Long id, WebSocketSession session) {
+
+
 
         ConsultingRoom consultingRoom = new ConsultingRoom();
         consultingRoomService.addRoom(consultingRoom);
