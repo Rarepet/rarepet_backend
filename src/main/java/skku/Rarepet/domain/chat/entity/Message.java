@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import skku.Rarepet.domain.user.entity.User;
 import skku.Rarepet.global.base.BaseTimeEntity;
 
 import javax.persistence.*;
@@ -26,9 +27,11 @@ public class Message extends BaseTimeEntity {
     @Column(nullable = false)
     private boolean isRead;
 
-    @Column(nullable = false)
-    private Long user;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "u_id", nullable = false)
+    private User user;
 
-    @Column(nullable = false)
-    private Long chat;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "c_id", nullable = false)
+    private ChatRoom chat;
 }

@@ -1,14 +1,15 @@
 package skku.Rarepet.domain.expert.dto;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import skku.Rarepet.domain.expert.entity.Expert;
 import skku.Rarepet.global.enums.AnimalType;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 
 @Getter
+@AllArgsConstructor
 public class ExpertResponseDto {
     @NotNull
     @Positive
@@ -18,15 +19,15 @@ public class ExpertResponseDto {
     private String name;
 
     @NotNull
+    private AnimalType animalType;
+
+    @NotNull
     private String intro;
 
     @NotNull
-    private AnimalType animalType;
+    private String certificate;
 
-    public ExpertResponseDto(Expert expert) {
-        this.id = expert.getId();
-        this.name = expert.getName();
-        this.intro = expert.getIntro();
-        this.animalType = expert.getAnimalType();
-    }
+    @NotNull
+    @PositiveOrZero
+    private int points;
 }

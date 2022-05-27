@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import skku.Rarepet.domain.expert.entity.Expert;
+import skku.Rarepet.domain.user.entity.User;
 import skku.Rarepet.global.base.BaseTimeEntity;
 
 import javax.persistence.*;
@@ -24,13 +26,12 @@ public class ChatRoom extends BaseTimeEntity {
     @Column(nullable = false, unique = true)
     private String roomId;
 
-    @Column(nullable = false)
-    private Long user;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "u_id", nullable = false)
+    private User user;
 
-    @Column(nullable = false)
-    private Long expert;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "e_id", nullable = false)
+    private Expert expert;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "chat")
-    private Collection<Message> messages;
 }

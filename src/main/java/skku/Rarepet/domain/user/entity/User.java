@@ -2,6 +2,7 @@ package skku.Rarepet.domain.user.entity;
 
 import lombok.*;
 import org.hibernate.annotations.ColumnDefault;
+import skku.Rarepet.domain.board.entity.Board;
 import skku.Rarepet.domain.chat.entity.ChatRoom;
 import skku.Rarepet.domain.chat.entity.Message;
 import skku.Rarepet.global.base.BaseTimeEntity;
@@ -38,18 +39,14 @@ public class User extends BaseTimeEntity {
     @ColumnDefault("0")
     private int points;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name= "user")
-    private Collection<ChatRoom> chatRoom;
-
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "user")
-    private Collection<Message> messages;
-
     public User(Long u_id, String username, String password) {
         this.id = u_id;
         this.username = username;
         this.password = password;
+    }
+
+    public User(Long u_id) {
+        this.id = u_id;
     }
 
     /**
@@ -62,11 +59,13 @@ public class User extends BaseTimeEntity {
     /**
      * 포인트 지출
      */
-    public void payPoints(int points){
+    public void payPoints(int points) {
         int restPoints = this.points - points;
-        if (restPoints < 0){
+        if (restPoints < 0) {
             throw new NotEnoughPointsException("포인트가 부족합니다.");
         }
         this.points = restPoints;
     }
+
+
 }

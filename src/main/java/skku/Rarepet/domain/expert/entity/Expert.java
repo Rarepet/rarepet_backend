@@ -52,9 +52,15 @@ public class Expert extends BaseTimeEntity {
     @JoinColumn(name = "u_id", referencedColumnName = "u_id", nullable = false, unique = true)
     private User user;
 
+
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "expert")
     private Collection<ChatRoom> chatRoom;
+
+    public Expert(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     /**
      * 포인트 획득
@@ -66,11 +72,13 @@ public class Expert extends BaseTimeEntity {
     /**
      * 포인트 환급
      */
-    public void payPoints(int points){
+    public void payPoints(int points) {
         int restPoints = this.points - points;
-        if (restPoints < 0){
+        if (restPoints < 0) {
             throw new NotEnoughPointsException("포인트가 부족합니다.");
         }
         this.points = restPoints;
     }
+
+
 }
