@@ -17,13 +17,13 @@ public class ChatController {
 
     private final ChatService chatService;
 
-    @PostMapping()
-    public String createChatRoom(
-            @Valid @RequestBody CreateChatRoomDto createChatRoomDto,
-            @SessionAttribute(name = SessionConst.SESSION, required = true) Long id
-    ) {
-        return chatService.createChatRoom(createChatRoomDto, id);
-    }
+//    @PostMapping()
+//    public String createChatRoom(
+//            @Valid @RequestBody CreateChatRoomDto createChatRoomDto,
+//            @SessionAttribute(name = SessionConst.SESSION, required = true) Long id
+//    ) {
+//        return chatService.createChatRoom(createChatRoomDto, id);
+//    }
 
     @GetMapping()
     public String findMyAllChatRoom(@SessionAttribute(name = SessionConst.SESSION, required = true) Long id){

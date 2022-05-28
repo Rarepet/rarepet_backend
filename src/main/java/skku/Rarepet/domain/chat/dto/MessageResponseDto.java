@@ -18,9 +18,9 @@ public class MessageResponseDto {
     @NotNull
     private Long user;
 
-    public MessageResponseDto(Message message) {
-        this.m_id = message.getId();
-        this.content = message.getContent();
-        this.user = message.getUser();
-    }
+//    public MessageResponseDto(Message message) {
+//        this.m_id = message.getId();
+//        this.content = message.getContent();
+//        this.user = message.getUser();
+//    }
 }

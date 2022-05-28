@@ -27,11 +27,11 @@ public class Message extends BaseTimeEntity {
     @Column(nullable = false)
     private boolean isRead;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "u_id", nullable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "c_id", nullable = false)
     private ChatRoom chat;
 }

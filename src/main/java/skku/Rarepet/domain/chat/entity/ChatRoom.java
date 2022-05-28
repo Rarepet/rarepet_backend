@@ -26,11 +26,11 @@ public class ChatRoom extends BaseTimeEntity {
     @Column(nullable = false, unique = true)
     private String roomId;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "u_id", nullable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "e_id", nullable = false)
     private Expert expert;
 

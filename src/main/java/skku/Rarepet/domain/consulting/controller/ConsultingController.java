@@ -4,8 +4,7 @@ package skku.Rarepet.domain.consulting.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import skku.Rarepet.domain.consulting.service.ConsultingService;
-import skku.Rarepet.domain.expert.dto.ExpertResponseDto;
-import skku.Rarepet.domain.expert.entity.Expert;
+import skku.Rarepet.domain.expert.dto.ExpertListResponseDto;
 import skku.Rarepet.domain.expert.service.ExpertService;
 import skku.Rarepet.global.enums.AnimalType;
 
@@ -23,8 +22,8 @@ public class ConsultingController {
      * ExpertController 기능 겹침
      */
     @GetMapping("/match")
-    public List<ExpertResponseDto> expertList(@RequestParam AnimalType animalType){
-        List<ExpertResponseDto> experts = expertService.findAllExpert(animalType);
+    public List<ExpertListResponseDto> expertList(@RequestParam AnimalType animalType){
+        List<ExpertListResponseDto> experts = expertService.findAllExpert(animalType);
         return experts;
     }
 

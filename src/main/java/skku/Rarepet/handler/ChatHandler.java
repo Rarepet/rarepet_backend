@@ -11,6 +11,7 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 import skku.Rarepet.global.interfaces.SessionConst;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,8 @@ public class ChatHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         System.out.println(message);
-        System.out.println(session);
+        System.out.println(session.getAttributes());
+        System.out.println(session.getHandshakeHeaders());
         String payload = message.getPayload();
         log.info("payload : " + payload);
 
@@ -37,18 +39,12 @@ public class ChatHandler extends TextWebSocketHandler {
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         Map<String, Object> map = session.getAttributes();
-        System.out.println(map.get("sessionId"));
+        System.out.println(session.getHandshakeHeaders());
+        System.out.println(session.getId());
+        System.out.println(map);
         list.add(session);
 
         log.info(session + " 클라이언트 접속");
-    }
-
-    public void afterConnectionEstablished(
-            WebSocketSession session,
-            @SessionAttribute(name = SessionConst.SESSION, required = true) Long id
-    ) throws Exception {
-        System.out.println(id);
-        System.out.println("Overloading");
     }
 
     /* Client 접속 해제 시 호출되는 메서드드 */

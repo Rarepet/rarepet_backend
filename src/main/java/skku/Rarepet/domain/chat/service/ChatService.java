@@ -22,19 +22,19 @@ public class ChatService {
     private final ChatRepository chatRepository;
     private final MessageRepository messageRepository;
 
-    public String createChatRoom(CreateChatRoomDto createChatRoomDto, Long id) {
-        try{
-            String roomId = UUID.randomUUID().toString();
-            ChatRoom chatRoom = ChatRoom.builder()
-                    .roomId(roomId)
-                    .user(id)
-                    .expert(createChatRoomDto.getExpert())
-                    .build();
-            return chatRepository.save(chatRoom).getRoomId();
-        } catch (Exception e) {
-            throw e;
-        }
-    }
+//    public String createChatRoom(CreateChatRoomDto createChatRoomDto, Long id) {
+//        try{
+//            String roomId = UUID.randomUUID().toString();
+//            ChatRoom chatRoom = ChatRoom.builder()
+//                    .roomId(roomId)
+//                    .user(id)
+//                    .expert(createChatRoomDto.getExpert())
+//                    .build();
+//            return chatRepository.save(chatRoom).getRoomId();
+//        } catch (Exception e) {
+//            throw e;
+//        }
+//    }
 
 //    public List<ChatRoomListResponseDto> findAllChatRoom(Long user) {
 //        List<ChatRoom> chatRoom = chatRepository.findMyAllChatRoom(user);
@@ -48,7 +48,7 @@ public class ChatService {
         try{
             Message message = Message.builder()
                     .content(createMessageDto.getMessage())
-                    .chat(createMessageDto.getId())
+//                    .chat(createMessageDto.getId())
                     .build();
             return messageRepository.save(message).getId();
         } catch(Exception e) {
@@ -56,11 +56,11 @@ public class ChatService {
         }
     }
 
-    public List<MessageResponseDto> findAllMessageInChatRoom(Long id) {
-        List<Message> messageList = messageRepository.findAllMessageByChatRoom(id);
-        List<MessageResponseDto> messageResponseDto = messageList.stream()
-                .map(message -> new MessageResponseDto(message))
-                .collect(Collectors.toList());
-        return messageResponseDto;
-    }
+//    public List<MessageResponseDto> findAllMessageInChatRoom(Long id) {
+//        List<Message> messageList = messageRepository.findAllMessageByChatRoom(id);
+//        List<MessageResponseDto> messageResponseDto = messageList.stream()
+//                .map(message -> new MessageResponseDto(message))
+//                .collect(Collectors.toList());
+//        return messageResponseDto;
+//    }
 }
