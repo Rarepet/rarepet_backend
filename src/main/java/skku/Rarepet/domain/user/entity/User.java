@@ -6,6 +6,7 @@ import skku.Rarepet.domain.board.entity.Board;
 import skku.Rarepet.domain.chat.entity.ChatRoom;
 import skku.Rarepet.domain.chat.entity.Message;
 import skku.Rarepet.global.base.BaseTimeEntity;
+import skku.Rarepet.global.exception.NotEnoughPointsException;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -47,4 +48,24 @@ public class User extends BaseTimeEntity {
     public User(Long u_id) {
         this.id = u_id;
     }
+
+    /**
+     * 포인트 구매
+     */
+    public void addPoints(int points){
+        this.points += points;
+    }
+
+    /**
+     * 포인트 지출
+     */
+    public void payPoints(int points) {
+        int restPoints = this.points - points;
+        if (restPoints < 0) {
+            throw new NotEnoughPointsException("포인트가 부족합니다.");
+        }
+        this.points = restPoints;
+    }
+
+
 }

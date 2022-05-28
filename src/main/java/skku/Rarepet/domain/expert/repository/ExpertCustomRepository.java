@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import skku.Rarepet.domain.expert.entity.Expert;
+import skku.Rarepet.domain.user.entity.User;
 import skku.Rarepet.global.enums.AnimalType;
 
 import java.util.List;
@@ -14,6 +15,10 @@ public interface ExpertCustomRepository {
 
     @Query(value = "select new Expert(e.id, e.name, e.animalType) from Expert e where e.animalType = :animalType and e.status = 'ACCEPT'")
     List<Expert> findAllExpertByAnimalType(@Param("animalType")AnimalType animalType);
+
+
+    @Query("select e from Expert e where e.name = :name")
+    Optional<Expert> findByName(@Param("name") String name);
 
     @Query(value = "select e from Expert e join e.user where e.user.id = :id")
     Optional<Expert> findExpertByUserId(@Param("id") Long id);

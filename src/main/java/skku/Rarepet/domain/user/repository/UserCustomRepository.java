@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface UserCustomRepository {
+
     @Query(value = "select new User(u.id, u.username, u.password) from User u where u.username = :username")
     Optional<User> findByUsername(@Param("username") String username);
 

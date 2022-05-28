@@ -20,7 +20,7 @@ import java.util.Objects;
 @Getter
 public class ConsultingRoom {
 
-    private Long id;
+    private String id;
 
     private final Map<Long, WebSocketSession> clients = new HashMap<>();
 

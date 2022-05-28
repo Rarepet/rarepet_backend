@@ -7,6 +7,7 @@ import skku.Rarepet.domain.expert.enums.StatusType;
 import skku.Rarepet.domain.user.entity.User;
 import skku.Rarepet.global.base.BaseTimeEntity;
 import skku.Rarepet.global.enums.AnimalType;
+import skku.Rarepet.global.exception.NotEnoughPointsException;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -51,9 +52,30 @@ public class Expert extends BaseTimeEntity {
     @JoinColumn(name = "u_id", referencedColumnName = "u_id", nullable = false, unique = true)
     private User user;
 
-    public Expert(Long id, String name, AnimalType animalType) {
+
+    public Expert(Long id, String name) {
         this.id = id;
         this.name = name;
         this.animalType = animalType;
     }
+
+    /**
+     * 포인트 획득
+     */
+    public void addPoints(int points){
+        this.points += points;
+    }
+
+    /**
+     * 포인트 환급
+     */
+    public void payPoints(int points) {
+        int restPoints = this.points - points;
+        if (restPoints < 0) {
+            throw new NotEnoughPointsException("포인트가 부족합니다.");
+        }
+        this.points = restPoints;
+    }
+
+
 }

@@ -10,10 +10,14 @@ import javax.validation.constraints.NotNull;
 public class ConsultingDto {
 
     @NotNull
+    private String username;
+
+    @NotNull
+    private String expertname;
+
+    @NotNull
     private int points;
 
     @NotNull
     private String content;
-
-
 }
