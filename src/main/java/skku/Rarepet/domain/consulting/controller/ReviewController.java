@@ -16,14 +16,14 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     // 리뷰 작성
-    @PostMapping()
+    @PostMapping("/create")
     public Long createReview(@Valid @RequestBody ReviewDto reviewDto,
                                  @SessionAttribute(name = SessionConst.SESSION, required = true) Long id){
         return reviewService.createReview(reviewDto,id);
     }
 
     // 리뷰 수정
-    @GetMapping()
+    @GetMapping("update")
     public Long modifyReview(@Valid @RequestBody ReviewDto reviewDto){
         return reviewService.modifyReview(reviewDto);
     }

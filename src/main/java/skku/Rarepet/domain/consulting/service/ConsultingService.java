@@ -4,12 +4,15 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import skku.Rarepet.domain.consulting.dto.ConsultingDto;
+import skku.Rarepet.domain.consulting.dto.ConsultingListDto;
+import skku.Rarepet.domain.consulting.entity.Consulting;
 import skku.Rarepet.domain.consulting.repository.ConsultingRepository;
 import skku.Rarepet.domain.expert.entity.Expert;
 import skku.Rarepet.domain.expert.repository.ExpertRepository;
 import skku.Rarepet.domain.user.entity.User;
 import skku.Rarepet.domain.user.repository.UserRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -33,6 +36,13 @@ public class ConsultingService {
         user.get().payPoints(points);
         expert.get().addPoints(points);
     }
+    
+    public List<Consulting> findAllConsultingList(Long id){
+        Optional<User> user = userRepository.findById(id);
+        return consultingRepository.findListByUser(user.get());
+    }
+
+    
 
 
 

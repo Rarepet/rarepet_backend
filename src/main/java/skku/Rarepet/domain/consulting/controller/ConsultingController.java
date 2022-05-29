@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.sockjs.transport.session.WebSocketServerSockJsSession;
+import skku.Rarepet.domain.consulting.entity.Consulting;
 import skku.Rarepet.domain.consulting.entity.ConsultingRoom;
 import skku.Rarepet.domain.consulting.service.ConsultingRoomService;
 import skku.Rarepet.domain.consulting.service.ConsultingService;
@@ -34,20 +35,22 @@ public class ConsultingController {
 //        return experts;
 //    }
 
-    @PostMapping("/room/{sid}/user/{uuid}")
-    public void enterConsultingRoom(@SessionAttribute(name = SessionConst.SESSION, required = false) Long id, WebSocketSession session) {
+    // 입장할 때 웹소켓에서 채팅방을 만들어줌
+    // 방은 그냥 만들고 uuid 로
+    // 방에 딱 들어가면 socket
+    // 방 id 랑, websocketsession map 해서 저장을 해두는
+    // websocketsession 은 저장할 필요 없음
 
+    /**
+     * DTO 로 변환할 필요 (리팩터링)
+     */
 
-
-        ConsultingRoom consultingRoom = new ConsultingRoom();
-        consultingRoomService.addRoom(consultingRoom);
-        consultingRoomService.addClient(consultingRoom,id,session);
+    @GetMapping("/list")
+    public List<Consulting> myConsultingList(@SessionAttribute(name = SessionConst.SESSION, required = false) Long id) {
+         return consultingService.findAllConsultingList(id);
     }
 
-    @GetMapping()
-    public void exitConsultingRoom(){
 
-    }
 
 
 

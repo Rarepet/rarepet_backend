@@ -20,6 +20,7 @@ import java.io.IOException;
 public class WebSocketConfiguration implements WebSocketConfigurer {
 
     private final SocketHandler socketHandler;
+
     /**
      *  create an endpoint that a client application can use to register as a WebSocket connection
      */
