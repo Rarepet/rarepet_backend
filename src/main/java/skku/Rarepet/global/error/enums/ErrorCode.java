@@ -15,7 +15,13 @@ public enum ErrorCode {
     FORBIDDEN(403, "권한이 없습니다"),
 
     //User
-    USER_ALREADY_EXIST(409, "유저가 이미 존재합니다.");
+    USER_ALREADY_EXIST(409, "유저가 이미 존재합니다."),
+    USER_NOT_EXIST(404, "유저가 존재하지 않습니다."),
+
+    //ChatRoom
+    CHATROOM_ALREADY_EXIST(409, "채팅방이 이미 존재합니다."),
+    CHATROOM_NOT_EXIST(404, "채팅방이 존재하지 않습니다.");
+
 
     private final int status;
     private final String message;
