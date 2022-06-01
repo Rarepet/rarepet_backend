@@ -53,10 +53,14 @@ public class Expert extends BaseTimeEntity {
     private User user;
 
 
-    public Expert(Long id, String name) {
+    public Expert(Long id, String name, AnimalType animalType) {
         this.id = id;
         this.name = name;
         this.animalType = animalType;
+    }
+
+    public Expert(Long id) {
+        this.id = id;
     }
 
     /**
