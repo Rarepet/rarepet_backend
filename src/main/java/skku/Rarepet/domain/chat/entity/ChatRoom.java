@@ -23,15 +23,23 @@ public class ChatRoom extends BaseTimeEntity {
     @Column(name = "c_id")
     private Long id;
 
-    @Column(nullable = false, unique = true)
-    private String roomId;
+//    @Column(nullable = false, unique = true)
+//    private String roomId;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "u_id", nullable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "e_id", nullable = false)
     private Expert expert;
 
+    public ChatRoom(Long id) {
+        this.id = id;
+    }
+
+    public ChatRoom(Long id, Expert expert) {
+        this.id = id;
+        this.expert = expert;
+    }
 }

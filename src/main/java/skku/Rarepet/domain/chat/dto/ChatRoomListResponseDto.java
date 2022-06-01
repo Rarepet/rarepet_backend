@@ -13,9 +13,6 @@ import javax.validation.constraints.Positive;
 @AllArgsConstructor
 public class ChatRoomListResponseDto {
 
-    @NotNull
-    private Long id;
-
     @Positive
     @NotNull
     private String roomId;

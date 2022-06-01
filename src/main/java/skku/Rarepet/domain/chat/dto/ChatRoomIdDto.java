@@ -1,2 +1,13 @@
-package skku.Rarepet.domain.chat.dto;public class ChatRoomIdDto {
+package skku.Rarepet.domain.chat.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+import javax.validation.constraints.NotNull;
+
+@Getter
+@AllArgsConstructor
+public class ChatRoomIdDto {
+    @NotNull
+    private Long id;
 }

@@ -17,12 +17,6 @@ public class CreateMessageDto {
     private Long id;
 
     @NotNull
-    private String roomId; // 방번호
-
-    @NotNull
-    private String sender; // 메시지 보낸사람
-
-    @NotNull
     private String message; // 메시지
 
 }
